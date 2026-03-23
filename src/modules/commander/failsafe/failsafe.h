@@ -157,6 +157,13 @@ private:
 		Return_mode = 3
 	};
 
+	enum class gps_redundancy_failsafe_mode : int32_t {
+		Warning = 0,
+		Return_mode = 1,
+		Land_mode = 2,
+		Terminate = 3,
+	};
+
 	static ActionOptions fromNavDllOrRclActParam(int param_value);
 
 	static ActionOptions fromGfActParam(int param_value);
@@ -168,6 +175,7 @@ private:
 	static ActionOptions fromHighWindLimitActParam(int param_value);
 	static ActionOptions fromPosLowActParam(int param_value);
 	static ActionOptions fromRemainingFlightTimeLowActParam(int param_value);
+	static ActionOptions fromGpsRedundancyActParam(int param_value);
 
 	static bool isFailsafeIgnored(uint8_t user_intended_mode, int32_t exception_mask_parameter);
 
@@ -209,7 +217,8 @@ private:
 					(ParamInt<px4::params::COM_QC_ACT>) _param_com_qc_act,
 					(ParamInt<px4::params::COM_WIND_MAX_ACT>) _param_com_wind_max_act,
 					(ParamInt<px4::params::COM_FLTT_LOW_ACT>) _param_com_fltt_low_act,
-					(ParamInt<px4::params::COM_POS_LOW_ACT>) _param_com_pos_low_act
+					(ParamInt<px4::params::COM_POS_LOW_ACT>) _param_com_pos_low_act,
+					(ParamInt<px4::params::COM_GPS_LOSS_ACT>) _param_com_gps_loss_act
 				       );
 
 };
